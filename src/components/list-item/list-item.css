@@ -1,0 +1,26 @@
+.parent{
+    display: flex;
+    justify-content: space-between;
+}
+.child{}
+
+.list-btn{
+    width: 42px;
+    margin: 0 5px;
+}
+
+.primary{
+    color: darkblue;
+    font-size: 1.1em;
+    font-style: oblique;
+    font-weight: bold;
+}
+.success{
+    text-decoration: line-through #a7a7a7;
+    color: #cecece;
+    font-weight: lighter;
+
+}
+.trash{
+    display: none;
+}
