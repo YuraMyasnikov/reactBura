@@ -29,7 +29,7 @@ export default class ListItem extends Component {
         const {label, onDeleted} = this.props
         const {important} = this.state
 
-      let BtnsClasses = 'parent'
+        let BtnsClasses = 'parent'
         if(this.state.success){
             BtnsClasses += ' success'
         }

@@ -16,18 +16,18 @@ export default class App extends Component{
 
     deleteItem = (id) => {
         this.setState( ( {itemData} )=>{
-          const idx =  itemData.findIndex( (el)=>{
+            const idx =  itemData.findIndex( (el)=>{
                 return el.id === id
             } )
 
-          const before = itemData.slice( 0,idx );
-          const after = itemData.slice( idx+1 );
+            const before = itemData.slice( 0,idx );
+            const after = itemData.slice( idx+1 );
 
-          const final = [...before, ...after];
+            const final = [...before, ...after];
 
-          return {
-              itemData : final
-          }
+            return {
+                itemData : final
+            }
 
 
         } )
@@ -50,4 +50,3 @@ export default class App extends Component{
     }
 
 }
-

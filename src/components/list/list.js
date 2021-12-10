@@ -16,9 +16,9 @@ const List = ({data,deleted}) => {
     } )
 
     return(
-            <ul className=" list-group">
-                {elements}
-            </ul>
+        <ul className=" list-group">
+            {elements}
+        </ul>
     )
 }
 
