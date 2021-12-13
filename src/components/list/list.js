@@ -5,12 +5,13 @@ const List = ({data,deleted}) => {
 
     const elements = data.map( (el)=>{
         const {id} = el
+        const className = `list-group-item ${id}`
         return(
-            <li key={id} className="list-group-item">
+            <li key={id} className={className} >
                 <ListItem
                     {...el}
                     onDeleted={ () => deleted(id) }
-                />
+                />`
             </li>
         )
     } )

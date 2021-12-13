@@ -11,4 +11,4 @@ const Search = ()=>{
     )
 }
 
-export default Searchn
+export default Search
