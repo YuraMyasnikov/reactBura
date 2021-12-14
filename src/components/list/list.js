@@ -1,7 +1,7 @@
 import React from "react";
-import ListItem from "../list-item/list-item";
+import ListItem from "../list-item/";
 
-const List = ({data,deleted}) => {
+const List = ({data,deleted,done}) => {
 
     const elements = data.map( (el)=>{
         const {id} = el
@@ -11,7 +11,10 @@ const List = ({data,deleted}) => {
                 <ListItem
                     {...el}
                     onDeleted={ () => deleted(id) }
-                />`
+
+                    onDone={ () => done(id)}
+                />
+
             </li>
         )
     } )

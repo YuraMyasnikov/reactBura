@@ -1,23 +1,26 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import './add-panel.css'
-import AddBtn from "./add-btn/add-btn";
-import AddArea from "./add-area/add-area";
+import AddBtn from "./add-btn/";
+import AddInput from "./add-input/";
 
-export default class AddPanel extends Component {
+export default class AddPanel extends Component{
 
     render() {
+        const {add} = this.props
 
-        const panelFun = (text) => {
-            this.props.app(`${text}`)
+        const addPanel = ()=>{
+            console.log(add('new Item'))
         }
 
         return(
-            <div className="addPanel">
-                < AddArea />
-                < AddBtn panel={panelFun}/>
-            </div>
+            <form className="d-flex addPanel">
+                <AddInput/>
+                <AddBtn add={addPanel}/>
+            </form>
+
         )
 
     }
 
 }
+

@@ -1,16 +1,19 @@
-import React, { Component } from "react";
+
+import React, {Component} from "react";
 import './add-btn.css'
 
 export default class AddBtn extends Component {
 
     render() {
 
-        const btnZone = ()=>{
-            this.props.panel('Yu zona')
+    const {add} = this.props
+
+        const addBtn = () => {
+           return add()
         }
 
         return(
-            <button onClick={btnZone} type="button" className="add btn btn-outline-secondary">Добавить</button>
+            <button onClick={addBtn} type="button" className="btn btn-outline-secondary addBtn">Добавить</button>
         )
 
     }
