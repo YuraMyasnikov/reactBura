@@ -17,8 +17,10 @@ export default class AddPanel extends Component{
                 <AddInput/>
                 <AddBtn add={addPanel}/>
             </form>
+
         )
 
     }
 
 }
+

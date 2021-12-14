@@ -29,20 +29,18 @@ export default class App extends Component{
 
     deleteItem = (id) => {
         this.setState( ( {itemData} )=>{
-          const idx =  itemData.findIndex( (el)=>{
+            const idx =  itemData.findIndex( (el)=>{
                 return el.id === id
             } )
 
-          const before = itemData.slice( 0,idx );
-          const after = itemData.slice( idx+1 );
+            const before = itemData.slice( 0,idx );
+            const after = itemData.slice( idx+1 );
 
-          const final = [...before, ...after];
+            const final = [...before, ...after];
 
-          return {
-              itemData : final
-          }
-
-
+            return {
+                itemData : final
+            }
         } )
     }
     addItem = (text) => {
@@ -70,7 +68,6 @@ export default class App extends Component{
     }
 
     render() {
-
         const {itemData} = this.state
 
         const all = this.state.itemData.length
@@ -79,14 +76,15 @@ export default class App extends Component{
 
         return(
             <div className="container">
+
                 < Title all={all} done={done} rest={rest}/>
                 < SearchPanel />
                 < List data={itemData} deleted={ this.deleteItem } done={this.clickDone}/>
                 < AddPanel add={this.addItem}/>
+
             </div>
         )
 
     }
 
 }
-

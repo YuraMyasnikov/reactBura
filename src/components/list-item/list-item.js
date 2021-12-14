@@ -10,6 +10,7 @@ export default class ListItem extends Component {
 
       let BtnsClasses = 'parent'
         if(done){
+
             BtnsClasses += ' success'
         }
         if(important){
