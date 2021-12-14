@@ -6,9 +6,9 @@ import {faCheck, faExclamation, faTrash} from "@fortawesome/free-solid-svg-icons
 export default class ListItem extends Component {
 
     render() {
-        const {label, onDeleted, onDone, done, important} = this.props
+        const {label,id, onDeleted, onDone, onImportant, done, important} = this.props
 
-      let BtnsClasses = 'parent'
+      let BtnsClasses = `${label}_${id} parent`
         if(done){
 
             BtnsClasses += ' success'
@@ -17,6 +17,7 @@ export default class ListItem extends Component {
             BtnsClasses += ' primary'
         }
 
+        const classItem = `${label}_${id}`
 
         const Btn = ()=>{
             return(
@@ -24,7 +25,7 @@ export default class ListItem extends Component {
                 <button onClick={onDeleted} className='list-btn btn btn-danger' >
                     < FontAwesomeIcon icon={faTrash} />
                 </button>
-                <button onClick={this.onClickPrimary} className='list-btn btn btn-primary' > < FontAwesomeIcon icon={faExclamation} /> </button>
+                <button onClick={onImportant} className='list-btn btn btn-primary' > < FontAwesomeIcon icon={faExclamation} /> </button>
                 <button onClick={onDone} className='list-btn btn btn-success' > < FontAwesomeIcon icon={faCheck} /> </button>
             </span>
             )
