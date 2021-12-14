@@ -67,6 +67,26 @@ export default class App extends Component{
         } )
     }
 
+    toggleProp = (arr, id, prop) => {
+        const idx = arr.findIndex( (el)=> el.id === id )
+        const oldItem = arr[idx]
+        const newItem = {...oldItem, [prop]:!oldItem[prop]}
+
+        const before = arr.slice(0, idx)
+        const after = arr.slice(idx + 1)
+        const newArray = [...before, newItem, ...after]
+
+        return newArray
+    }
+
+    clickImportant = (id) => {
+        this.setState( ({itemData})=>{
+            return {
+                itemData: this.toggleProp(itemData, id, 'important')
+            }
+        } )
+    }
+
     render() {
         const {itemData} = this.state
 
@@ -79,7 +99,7 @@ export default class App extends Component{
 
                 < Title totalCount={totalCount} doneCount={doneCount} todoCount={todoCount}/>
                 < SearchPanel />
-                < List data={itemData} deleted={ this.deleteItem } done={this.clickDone}/>
+                < List data={itemData} deleted={ this.deleteItem } done={this.clickDone} important={this.clickImportant}/>
                 < AddPanel add={this.addItem}/>
 
             </div>

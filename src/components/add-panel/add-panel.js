@@ -1,26 +1,40 @@
 import React, {Component} from "react";
 import './add-panel.css'
-import AddBtn from "./add-btn/";
-import AddInput from "./add-input/";
 
 export default class AddPanel extends Component{
 
-    render() {
-        const {add} = this.props
-
-        const addPanel = ()=>{
-            console.log(add('new Item'))
-        }
-
-        return(
-            <form className="d-flex addPanel">
-                <AddInput/>
-                <AddBtn add={addPanel}/>
-            </form>
-
-        )
-
+    state = {
+        label:''
     }
 
+    render() {
+
+        const {add} = this.props
+
+        const changeInput = (e)=>{
+            this.setState( {
+                label:e.target.value
+            } )
+
+        }
+
+
+        const submit = (e) => {
+            e.preventDefault()
+            if(this.state.label !== ''){
+                add(this.state.label)
+                this.state.label=''
+            }
+
+
+
+        }
+        return(
+            <form className="formAdd d-flex" onSubmit={submit}>
+                <input className="inputAdd form-control" type="text" placeholder="добавить" onChange={changeInput} value={this.state.label}/>
+                <button className="btn btn-outline-primary">добавить</button>
+            </form>
+        )
+    }
 }
 
