@@ -1,17 +1,19 @@
-import React from "react";
+import React, {Component} from "react";
 import './search-panel.css'
+import Search from "./search/";
+import BtnFilter from "./btn-filter/";
 
-import Search from "./search/search";
-import BtnFilter from "./btn-filter/btn-filter";
+export default class SearchPanel extends Component{
 
-const SearchPanel = () => {
-    return(
-        <div className="row">
-            <div className="searchPanel">
-                < Search /> < BtnFilter/>
+    render() {
+
+        return(
+            <div className="searchPanel d-flex justify-content-between">
+                < Search />
+                < BtnFilter />
             </div>
-        </div>
-    )
-}
+        )
 
-export default SearchPanel
+    }
+
+}

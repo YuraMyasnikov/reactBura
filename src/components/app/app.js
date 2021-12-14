@@ -1,17 +1,30 @@
 import React, {Component} from "react";
-import Title from "../title/title";
-import List from "../list/list";
-import SearchPanel from "../search-panel/search-panel";
+import Title from "../title/";
+import List from "../list/";
+import AddPanel from "../add-panel/";
+import SearchPanel from "../search-panel/";
 
 export default class App extends Component{
 
+    id = 100;
+
     state = {
         itemData : [
-            {label:'Yura', id:'Yu'},
-            {label:'Lena', id:'Le'},
-            {label:'Roma', id:'Ro'},
-            {label:'Vika', id:'Vi'},
+            this.item('Yura'),
+            this.item('Lena'),
+            this.item('Roma'),
+            this.item('Vika'),
+            this.item('Ira'),
         ]
+    }
+
+    item (label) {
+        return{
+            label,
+            id:this.id++,
+            done:false,
+            important:false
+        }
     }
 
     deleteItem = (id) => {
@@ -32,18 +45,44 @@ export default class App extends Component{
 
         } )
     }
+    addItem = (text) => {
+        const newItem = this.item(text)
+        this.setState( ({itemData})=>{
+            const newArr = [newItem, ...itemData];
+            return { itemData:newArr }
+        } )
+    }
 
+    clickDone = (id) => {
+        this.setState( ( {itemData} )=>{
+           const idx = itemData.findIndex( (el)=> el.id === id )
+           const oldItem = itemData[idx]
+           const newItem = {...oldItem, done:!oldItem.done}
 
+           const before = itemData.slice(0, idx)
+           const after = itemData.slice(idx + 1)
+           const newArray = [...before, newItem, ...after]
+
+           return{
+               itemData : newArray
+           }
+        } )
+    }
 
     render() {
 
         const {itemData} = this.state
 
+        const all = this.state.itemData.length
+        const done = itemData.filter( (el) => el.done === true ).length
+        const rest = all - done
+
         return(
             <div className="container">
-                <Title />
-                <SearchPanel />
-                <List data={itemData} deleted={ this.deleteItem }/>
+                < Title all={all} done={done} rest={rest}/>
+                < SearchPanel />
+                < List data={itemData} deleted={ this.deleteItem } done={this.clickDone}/>
+                < AddPanel add={this.addItem}/>
             </div>
         )
 

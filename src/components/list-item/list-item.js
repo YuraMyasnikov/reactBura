@@ -5,35 +5,14 @@ import {faCheck, faExclamation, faTrash} from "@fortawesome/free-solid-svg-icons
 
 export default class ListItem extends Component {
 
-    state =  {
-        primary: false,
-        success: false
-    }
-
-    onClickPrimary = () => {
-        this.setState( ({primary})=>{
-            return{
-                primary: !primary
-            }
-        } )
-    }
-    onClickSuccess = () => {
-        this.setState( (state)=>{
-            return{
-                success: !this.state.success
-            }
-        } )
-    }
-
     render() {
-        const {label, onDeleted} = this.props
-        const {important} = this.state
+        const {label, onDeleted, onDone, done, important} = this.props
 
       let BtnsClasses = 'parent'
-        if(this.state.success){
+        if(done){
             BtnsClasses += ' success'
         }
-        if(this.state.primary){
+        if(important){
             BtnsClasses += ' primary'
         }
 
@@ -45,7 +24,7 @@ export default class ListItem extends Component {
                     < FontAwesomeIcon icon={faTrash} />
                 </button>
                 <button onClick={this.onClickPrimary} className='list-btn btn btn-primary' > < FontAwesomeIcon icon={faExclamation} /> </button>
-                <button onClick={this.onClickSuccess} className='list-btn btn btn-success' > < FontAwesomeIcon icon={faCheck} /> </button>
+                <button onClick={onDone} className='list-btn btn btn-success' > < FontAwesomeIcon icon={faCheck} /> </button>
             </span>
             )
         }

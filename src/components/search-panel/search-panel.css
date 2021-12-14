@@ -1,7 +1,11 @@
 .searchPanel{
-    padding: 0 15px;
+    margin-bottom: 10px;
+}
+.input{
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+}
+.icon{
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 2px;
 }
