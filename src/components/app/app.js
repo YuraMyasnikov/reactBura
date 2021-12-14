@@ -70,14 +70,14 @@ export default class App extends Component{
     render() {
         const {itemData} = this.state
 
-        const all = this.state.itemData.length
-        const done = itemData.filter( (el) => el.done === true ).length
-        const rest = all - done
+        const totalCount = this.state.itemData.length
+        const doneCount = itemData.filter( (el) => el.done === true ).length
+        const todoCount = totalCount - doneCount
 
         return(
             <div className="container">
 
-                < Title all={all} done={done} rest={rest}/>
+                < Title totalCount={totalCount} doneCount={doneCount} todoCount={todoCount}/>
                 < SearchPanel />
                 < List data={itemData} deleted={ this.deleteItem } done={this.clickDone}/>
                 < AddPanel add={this.addItem}/>
