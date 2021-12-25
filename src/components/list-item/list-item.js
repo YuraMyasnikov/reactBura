@@ -17,8 +17,6 @@ export default class ListItem extends Component {
             BtnsClasses += ' primary'
         }
 
-        const classItem = `${label}_${id}`
-
         const Btn = ()=>{
             return(
                 <span className='child'>

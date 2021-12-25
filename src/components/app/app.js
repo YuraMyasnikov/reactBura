@@ -10,21 +10,22 @@ export default class App extends Component{
 
     state = {
         itemData : [
-            this.item('Yura'),
+            this.item('Yura',true),
             this.item('Lena'),
-            this.item('Roma'),
-            this.item('Vika'),
-            this.item('Ira'),
+            this.item('Roma', true,true),
+            this.item('Vika',true, true),
+            this.item('Ira', false,true),
         ],
-        searchValue: ''
+        searchValue: '',
+        filter: ''
     }
 
-    item (label) {
+    item (label,done=false, important=false) {
         return{
             label,
             id:this.id++,
-            done:false,
-            important:false
+            done,
+            important
         }
     }
     deleteItem = (id) => {
@@ -101,9 +102,32 @@ export default class App extends Component{
         } )
     }
 
+    onFilter = (items,filter)=>{
+        switch (filter) {
+            case 'all':
+                return items;
+            case 'important':
+                return items.filter( (item)=>!item.done);
+            case 'done':
+                return items.filter( (item)=>item.done )
+            default:
+                return items
+        }
+    }
+    onClickFilter = (filter)=>{
+     /* this.setState(({filter})=>{
+          return {
+              filter:filter
+          }
+      })*/
+    }
+
+
     render() {
 
-        const {itemData,searchValue} = this.state
+        const {itemData,searchValue, filter} = this.state
+
+        this.onClickFilter()
 
         const totalCount = this.state.itemData.length
         const doneCount = itemData.filter( (el) => el.done === true ).length
@@ -111,14 +135,14 @@ export default class App extends Component{
 
         const onSearchValue = this.onSearchValue
 
-        console.log('test', searchValue)
-
         return(
             <div className="container">
 
+                {filter} {this.onClickFilter()}
+
                 < Title totalCount={totalCount} doneCount={doneCount} todoCount={todoCount}/>
-                < SearchPanel onSearchValue={onSearchValue}/>
-                < List data={this.onSearch(itemData, searchValue)} deleted={ this.deleteItem } done={this.clickDone} important={this.clickImportant}/>
+                < SearchPanel onSearchValue={onSearchValue} filter={filter} onClickFilter={this.onClickFilter}/>
+                < List data={this.onFilter(this.onSearch(itemData, searchValue),filter)} deleted={ this.deleteItem } done={this.clickDone} important={this.clickImportant}/>
                 < AddPanel add={this.addItem}/>
 
             </div>

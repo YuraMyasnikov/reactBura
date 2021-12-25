@@ -7,13 +7,13 @@ export default class SearchPanel extends Component{
 
     render() {
 
-        const{onSearchValue} = this.props
+        const{onSearchValue, onClickFilter, filter} = this.props
 
 
         return(
             <div className="searchPanel d-flex justify-content-between">
                 < Search onSearchValue={onSearchValue}/>
-                < BtnFilter />
+                < BtnFilter filter={filter} onClickFilter={()=>onClickFilter}/>
             </div>
         )
 
